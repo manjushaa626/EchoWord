@@ -1,0 +1,27 @@
+{% extends 'layout\base.html' %}
+{% load static %}
+{% block content %}
+    
+    <div class="container text-center">
+        <h2>SignUp</h2>
+    </div>
+    {% if form.errors %}
+      <div class="alert-danger container" style="color: red;">{{ form.errors }}</div>
+      {% else %}
+      <div class="alert-danger container" style="color: red;">{{ msg }}</div>
+      {% endif %}
+      <form id="contactForm" action="{% url 'signup' %}" method="post" >
+        {% csrf_token %}
+        
+        <div class="container py-4">
+          <div class="mb-3">
+            {{ form }}
+          </div>
+          <div>
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+      </div>
+      </form>
+</body>
+</html>
+{% endblock %}

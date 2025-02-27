@@ -1,0 +1,23 @@
+{% extends 'layout\base.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <div class="container text-center ">
+        <h2>Add Product</h2>
+    </div>
+        {% if form.errors %}
+      <div class="alert-danger container" style="color: red;">{{ form.errors }}</div>
+      {% endif %}
+      <form id="contactForm" class="form-container" action="{% if instance and instance.id %}{% url 'blog_update' pk=instance.id %}{% else %}{% url 'blog_save' %}{% endif %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <div class="container py-4">
+          <div class="mb-3">
+            {{ addblogform.as_p }}
+          </div>
+          <button type="submit" class="btn btn-primary">{%if instance %}Save Changes{% else %}Create Data{% endif %}</button>
+        </div>
+      </form>
+</body>
+</html>
+{% endblock %}
